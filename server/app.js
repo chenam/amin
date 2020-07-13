@@ -1,8 +1,8 @@
 /*
  * @Date: 2020-07-03 15:40:47
  * @LastEditors: chenamin
- * @LastEditTime: 2020-07-13 15:24:20
- * @FilePath: \server\app.js
+ * @LastEditTime: 2020-07-13 18:24:25
+ * @FilePath: \amin\server\app.js
  * @desc: 
  */ 
 var createError = require('http-errors');
@@ -79,6 +79,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(4000, () => {
+  console.log("http://localhost:3000")
+})
 
 
 module.exports = app;
