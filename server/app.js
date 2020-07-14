@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-03 15:40:47
  * @LastEditors: chenamin
- * @LastEditTime: 2020-07-13 18:24:25
+ * @LastEditTime: 2020-07-13 18:29:43
  * @FilePath: \amin\server\app.js
  * @desc: 
  */ 
@@ -42,25 +42,21 @@ const global = fs.readdirSync(__dirname).filter(i => fileName.includes(i)).reduc
     }
     total[item][nameKey] = require(  __dirname + '/' + item + '/' +  name)
   })
-  console.log(total,'total')
   return total
 }, {'plugins': {}, 'models': {}})
 
 
 // 加载所有路由
 const dirname = __dirname + '/routes'
-// fs.readdirSync(dirname).forEach(i => {
-//   const file = dirname + '/' + i;
-//   console.log(file,'file')
-//   if(fs.statSync(file).isDirectory()){
-//     fs.readdirSync(file).forEach(item => {
-//       const name = item.replace('.js', '')
-//       console.log(name,'name')
-//       require( file + '/' + name )(app, global['plugins'], global['models'])
-//     })
-//   }
-// })
-console.log(global['plugins'])
+fs.readdirSync(dirname).forEach(i => {
+  const file = dirname + '/' + i;
+  if(fs.statSync(file).isDirectory()){
+    fs.readdirSync(file).forEach(item => {
+      const name = item.replace('.js', '')
+      require( file + '/' + name )(app, global['plugins'], global['models'])
+    })
+  }
+})
 
 require('./plugins/db')(app);
 
@@ -81,7 +77,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(4000, () => {
-  console.log("http://localhost:3000")
+  console.log("http://localhost:4000")
 })
 
 

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
-import './App.css';
+import '@/App.css';
+import Api from '@/api/index'
 
 function App() {
+  useEffect(() => {
+    Api.getArticle({})
+    .then((res:any) => {
+      console.log(res)
+    })
+  }, [])
   return (
     <div className="App">
       <header className="App-header">
